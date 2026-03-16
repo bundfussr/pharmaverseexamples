@@ -16,7 +16,6 @@ on:
       - ready_for_review
     branches:
       - main
-    if: "!contains(github.event.pull_request.title, '[skip website]')"
   push:
     branches:
       - main
@@ -27,6 +26,7 @@ on:
 jobs:
   build-deploy:
     name: Build & Deploy Website
+    if: "!contains(github.event.pull_request.title, '[skip website]')"
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -76,6 +76,6 @@ jobs:
         with:
           header: "Documentation Website"
           message: |
-            The website is availables at https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ github.head_ref }}.
+            The website is available at https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ github.head_ref }}.
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
