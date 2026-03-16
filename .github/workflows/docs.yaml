@@ -16,6 +16,7 @@ on:
       - ready_for_review
     branches:
       - main
+    if: "!contains(github.event.pull_request.title, '[skip website]')"
   push:
     branches:
       - main
